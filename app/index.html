@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Gold — GTA 6-style cover maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-gold">VICE GOLD</span> <span class="brand-sub">COVER STUDIO</span></div>
+  <ol class="steps">
+    <li><b>1</b> ADD PHOTOS</li>
+    <li><b>2</b> PICK A SIZE</li>
+    <li><b>3</b> EXPORT PNG</li>
+  </ol>
+  <div class="top-actions">
+    <button id="btn-add-photos" class="btn btn-gold" type="button">+ ADD PHOTOS</button>
+    <button id="btn-export-all-top" class="btn btn-pink" type="button">&#8681; EXPORT ALL SIZES</button>
+  </div>
+  <input id="file-add" type="file" accept="image/*" multiple hidden>
+  <input id="file-replace" type="file" accept="image/*" hidden>
+</header>
+
+<main class="studio">
+  <aside class="col col-left">
+    <section class="panel">
+      <div class="panel-head"><h2>PHOTOS</h2><span id="photo-count">8 LOADED</span></div>
+      <p class="hint">Drop photos here or use Add photos. One photo fills every panel with different crops; several are spread across panels.</p>
+      <div id="photo-grid" class="photo-grid"></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h2>PANEL</h2><span id="panel-label">1 OF 8</span></div>
+      <div class="row"><label for="zoom">ZOOM</label><input id="zoom" type="range" min="1" max="2.5" step="0.01" value="1"><span id="zoom-val" class="val">1.00&times;</span></div>
+      <div class="btn-col">
+        <button id="btn-center" class="btn btn-dark" type="button">AUTO CENTER CROP</button>
+        <button id="btn-replace" class="btn btn-dark" type="button">REPLACE PHOTO&hellip;</button>
+        <button id="btn-fill" class="btn btn-dark" type="button">FILL ALL PANELS FROM THIS PHOTO</button>
+        <button id="btn-spread" class="btn btn-dark" type="button">SPREAD ALL PHOTOS ACROSS PANELS</button>
+      </div>
+      <p class="hint">Drag a panel in the preview to pan &middot; scroll to zoom &middot; double-click to re-center &middot; drop a photo on a panel to replace it.</p>
+      <div class="row"><button id="btn-undo" class="btn btn-dark" type="button">UNDO</button><button id="btn-redo" class="btn btn-dark" type="button">REDO</button></div>
+    </section>
+  </aside>
+
+  <section class="col col-center">
+    <div class="size-bar" id="size-bar"></div>
+    <div class="preview-wrap"><canvas id="preview"></canvas></div>
+    <div class="export-bar">
+      <button id="btn-export" class="btn btn-gold" type="button">&#8681; EXPORT PNG</button>
+      <button id="btn-export-all" class="btn btn-pink" type="button">&#8681; EXPORT ALL SIZES</button>
+      <span id="export-note" class="export-note"></span>
+    </div>
+  </section>
+
+  <aside class="col col-right">
+    <section class="panel">
+      <div class="panel-head"><h2>LAYOUT</h2></div>
+      <div id="layout-grid" class="layout-grid"></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h2>GRADE</h2></div>
+      <div id="grade-grid" class="grade-grid"></div>
+      <div class="sliders">
+        <div class="row"><label for="s-strength">STRENGTH</label><input id="s-strength" type="range" min="0" max="1" step="0.01" value="0.9"><span id="v-strength" class="val">0.90</span></div>
+        <div class="row"><label for="s-contrast">CONTRAST</label><input id="s-contrast" type="range" min="0.7" max="1.4" step="0.01" value="1.06"><span id="v-contrast" class="val">1.06</span></div>
+        <div class="row"><label for="s-saturation">SATURATION</label><input id="s-saturation" type="range" min="0.5" max="1.8" step="0.01" value="1.06"><span id="v-saturation" class="val">1.06</span></div>
+        <div class="row"><label for="s-grain">GRAIN</label><input id="s-grain" type="range" min="0" max="1" step="0.01" value="0.28"><span id="v-grain" class="val">0.28</span></div>
+        <div class="row"><label for="s-vignette">VIGNETTE</label><input id="s-vignette" type="range" min="0" max="1" step="0.01" value="0.5"><span id="v-vignette" class="val">0.50</span></div>
+        <label class="check"><input id="c-halftone" type="checkbox"> HALFTONE PRINT DOTS</label>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h2>CAPTION</h2></div>
+      <label class="field">TITLE<input id="cap-title" type="text" value="VICE GOLD"></label>
+      <label class="field">SUBTITLE<input id="cap-subtitle" type="text" value="Golden hour heist"></label>
+      <label class="field">TAGLINE<input id="cap-tagline" type="text" value="GOLDEN HOUR &bull; ONE LAST SCORE &bull; COMING SOON"></label>
+      <label class="field">CITY<input id="cap-city" type="text" value="LEONIDA"></label>
+      <label class="field">RIBBON<input id="cap-ribbon" type="text" value="COLLECTOR'S EDITION"></label>
+      <label class="check"><input id="c-ribbon" type="checkbox" checked> SHOW RIBBON</label>
+    </section>
+  </aside>
+</main>
+
+<script type="module" src="src/shots.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+/* Vice Gold studio — dark editor chrome. Fonts are local OFL files. */
+@font-face { font-family: "Passion One"; src: url("fonts/PassionOne.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Anton"; src: url("fonts/Anton-Regular.ttf") format("truetype"); font-display: swap; }
+
+:root {
+  --bg: #150a18;
+  --bg2: #1e0f22;
+  --panel: #241128;
+  --panel2: #2c1530;
+  --line: #3d1c42;
+  --ink: #f6e8f2;
+  --muted: #b08aa8;
+  --gold: #ffd76a;
+  --gold2: #ff9a3d;
+  --pink: #ff4d8d;
+  --pink2: #ff7ab0;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+body { font-family: "Anton", "Arial Narrow", sans-serif; min-height: 100vh; }
+body.shot-cover { background: #000; }
+body.shot-cover .topbar, body.shot-cover .studio { display: none; }
+body.shot-cover #shot-stage { display: block; }
+#shot-stage { display: none; width: 100vw; height: 100vh; }
+#shot-stage canvas { width: 100vw; height: 100vh; display: block; }
+
+.topbar {
+  display: flex; align-items: center; gap: 28px;
+  padding: 10px 18px; background: linear-gradient(90deg, #2a0f24, #1c0a1e);
+  border-bottom: 1px solid var(--line);
+}
+.brand { font-size: 26px; letter-spacing: 1px; white-space: nowrap; }
+.brand-gold { font-family: "Passion One", sans-serif; color: var(--gold); }
+.brand-sub { color: var(--pink2); font-size: 15px; letter-spacing: 3px; }
+.steps { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; color: var(--muted); font-size: 13px; letter-spacing: 2px; }
+.steps b { display: inline-block; width: 20px; height: 20px; line-height: 20px; text-align: center; border-radius: 50%; background: var(--pink); color: #fff; font-size: 12px; margin-right: 6px; }
+.top-actions { margin-left: auto; display: flex; gap: 10px; }
+
+.btn { border: 0; border-radius: 8px; padding: 10px 16px; font-family: "Anton", sans-serif; font-size: 14px; letter-spacing: 1.5px; cursor: pointer; color: #1c0a18; }
+.btn-gold { background: linear-gradient(180deg, var(--gold), var(--gold2)); }
+.btn-pink { background: linear-gradient(180deg, var(--pink2), var(--pink)); color: #fff; }
+.btn-dark { background: var(--panel2); color: var(--ink); border: 1px solid var(--line); }
+.btn:hover { filter: brightness(1.12); }
+.btn.active { outline: 2px solid var(--gold); }
+
+.studio { display: grid; grid-template-columns: 300px 1fr 300px; gap: 14px; padding: 14px 18px; align-items: start; }
+.col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.panel-head h2 { margin: 0; font-size: 15px; letter-spacing: 3px; color: var(--gold); }
+.panel-head span { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+.hint { font-family: Arial, sans-serif; font-size: 12px; line-height: 1.45; color: var(--muted); margin: 6px 0 10px; }
+
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.photo-cell { position: relative; border: 2px solid transparent; border-radius: 8px; overflow: hidden; cursor: pointer; padding: 0; background: #000; aspect-ratio: 4 / 3; }
+.photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-cell .num { position: absolute; left: 4px; top: 4px; background: rgba(0,0,0,.65); color: #fff; font-size: 11px; padding: 1px 6px; border-radius: 6px; }
+.photo-cell .tag { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.65); color: var(--gold); font-size: 9px; letter-spacing: 1px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.photo-cell.selected { border-color: var(--gold); }
+.photo-cell.hero-cell { border-color: var(--pink); }
+
+.row { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.row label { font-size: 12px; letter-spacing: 2px; color: var(--muted); min-width: 86px; }
+.row input[type="range"] { flex: 1; accent-color: var(--pink); }
+.val { font-size: 12px; color: var(--ink); min-width: 38px; text-align: right; }
+.btn-col { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.btn-col .btn { text-align: left; }
+
+.size-bar { display: flex; gap: 8px; justify-content: center; }
+.size-btn { background: var(--panel); border: 1px solid var(--line); color: var(--ink); border-radius: 8px; padding: 8px 14px; cursor: pointer; font-family: "Anton", sans-serif; letter-spacing: 1px; font-size: 13px; text-align: center; }
+.size-btn small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 2px; }
+.size-btn.active { border-color: var(--pink); outline: 2px solid var(--pink); }
+.preview-wrap { background: #0d060f; border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: flex; justify-content: center; }
+.preview-wrap canvas { max-width: 100%; max-height: calc(100vh - 250px); box-shadow: 0 8px 30px rgba(0,0,0,.6); }
+.export-bar { display: flex; gap: 10px; justify-content: center; align-items: center; }
+.export-note { font-family: Arial, sans-serif; font-size: 12px; color: var(--muted); }
+
+.layout-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.layout-btn { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 2px 4px; cursor: pointer; color: var(--ink); font-family: "Anton", sans-serif; font-size: 10px; letter-spacing: 1px; }
+.layout-btn .mini { height: 34px; margin: 0 6px 4px; border-radius: 3px; background:
+  linear-gradient(135deg, #ff9a3d 0 32%, #1c0a18 32% 34%, #ff5e7a 34% 66%, #1c0a18 66% 68%, #7a2bd8 68% 100%); }
+.layout-btn.active { outline: 2px solid var(--gold); }
+.grade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.grade-btn { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 9px 6px; cursor: pointer; color: var(--ink); font-family: "Anton", sans-serif; font-size: 12px; letter-spacing: 1px; }
+.grade-btn.active { outline: 2px solid var(--pink); background: #3a1a3e; }
+.sliders .check, .check { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 2px; color: var(--muted); margin-top: 8px; cursor: pointer; }
+.check input { accent-color: var(--pink); }
+.field { display: block; font-size: 12px; letter-spacing: 2px; color: var(--muted); margin: 8px 0; }
+.field input { display: block; width: 100%; margin-top: 4px; background: #160a19; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); padding: 8px; font-family: "Anton", sans-serif; font-size: 14px; letter-spacing: 1px; }
